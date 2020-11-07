@@ -1,0 +1,8 @@
+# Compiled object files
+*.o
+
+# Executable
+prog
+
+# VS Code
+.vscode
