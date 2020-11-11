@@ -10,8 +10,9 @@ private:
     vector <int> lista;
     vector <int> posicoes;
 public:
-    void adicionarElemento(int elemento);
-    void adicionarPosicao(int elemento, int posicao);
+    bool adicionarElemento(int elemento);
+    bool temElemento(int elemento);
+    bool adicionarPosicao(int elemento, int posicao);
     void limparDados();
 };
 

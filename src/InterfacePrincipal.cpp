@@ -1,17 +1,22 @@
 #include "InterfacePrincipal.hpp"
 
+#include <limits.h>
+
 void InterfacePrincipal::menuPrincipal() {
     while(true) {
         cout << "(1) Cadastrar novas listas" << endl;
         cout << "(2) Adicionar novo elemento às listas" << endl;
-        cout << "(3) Calcular a distância tau de Kendall" << endl;
+        cout << "(3) Ver listas" << endl;
+        cout << "(4) Calcular a distância tau de Kendall" << endl;
         cout << "(0) Finalizar" << endl;
-        int opcao = getInt("", 0, 3);
+        int opcao = getInt("", 0, 4);
         if(opcao == 1)
             cadastrarListas();
         else if(opcao == 2)
             adicionarElemento();
         else if(opcao == 3)
+            verListas();
+        else if(opcao == 4)
             calcularDistancia();
         else
             return;
@@ -19,10 +24,31 @@ void InterfacePrincipal::menuPrincipal() {
 }
 
 void InterfacePrincipal::cadastrarListas() {
-
+    kendallTau.limparDados();
+    int tamanho = getInt("Tamanho do conjunto de elementos: ", 1, INT_MAX);
+    cout << "Lista 1" << endl;
+    for(int i = 0; i < tamanho; i++) {
+        int elemento = getInt("Elemento " + to_string(i + 1) + ": ", INT_MIN, INT_MAX);
+        if(!kendallTau.adicionarElemento(elemento)) {
+            cout << "Esse elemento já foi incluído nessa lista" << endl;
+            i--;
+        }
+    }
+    cout << "Lista 2" << endl;
+    for(int i = 0; i < tamanho; i++) {
+        int elemento = getInt("Elemento " + to_string(i + 1) + ": ", INT_MIN, INT_MAX);
+        if(!kendallTau.adicionarPosicao(elemento, 0)) {
+            cout << "Esse elemento não faz parte do conjunto ou já foi incluído nessa lista" << endl;
+            i--;
+        }
+    }
 }
 
 void InterfacePrincipal::adicionarElemento() {
+
+}
+
+void InterfacePrincipal::verListas() {
 
 }
 

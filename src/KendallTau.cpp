@@ -1,17 +1,32 @@
 #include "KendallTau.hpp"
 
-void KendallTau::adicionarElemento(int elemento) {
+bool KendallTau::adicionarElemento(int elemento) {
+    if(temElemento(elemento))
+        return false;
     lista.push_back(elemento);
-    posicoes.resize(lista.size());
+    posicoes.resize(lista.size(), -1);
+    return true;
 }
 
-void KendallTau::adicionarPosicao(int elemento, int posicao) {
+bool KendallTau::temElemento(int elemento) {
+    for(int i = 0; i < (int)lista.size(); i++) {
+        if(lista[i] == elemento)
+            return true;
+    }
+    return false;
+}
+
+bool KendallTau::adicionarPosicao(int elemento, int posicao) {
     for(int i = 0; i < (int)lista.size(); i++) {
         if(lista[i] == elemento) {
-            posicoes[i] = posicao;
-            return;
+            if(posicoes[i] == -1) {
+                posicoes[i] = posicao;
+                return true;
+            } else
+                return false;
         }
     }
+    return false;
 }
 
 void KendallTau::limparDados() {
