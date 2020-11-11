@@ -1,5 +1,7 @@
 #include "KendallTau.hpp"
 
+using namespace std; 
+
 bool KendallTau::adicionarElemento(int elemento) {
     if(temElemento(elemento))
         return false;
@@ -27,6 +29,17 @@ bool KendallTau::adicionarPosicao(int elemento, int posicao) {
         }
     }
     return false;
+}
+
+void KendallTau::imprimirListas(){
+    
+    for(int i: lista ){
+        cout << i << " ";
+    }
+    cout << endl; 
+    for(int i; i< (int)lista.size(); i++){
+        cout << lista[posicoes[i]] << " ";
+    }  
 }
 
 void KendallTau::limparDados() {
