@@ -16,6 +16,7 @@ public:
     bool temElemento(int elemento);
     bool adicionarPosicao(int elemento, int posicao);
     void imprimirListas(); 
+    void gerarEspacos(vector <int> &espacos, vector <bool> &adicionarEspaco); 
     void limparDados();
 };
 

@@ -32,36 +32,38 @@ bool KendallTau::adicionarPosicao(int elemento, int posicao) {
 }
 
 void KendallTau::imprimirListas(){
-
     if(lista.empty()){
         cout << "lista vazia" << endl; 
         return;
     }
-        vector <bool> adicionarEspaco(lista.size(), false); 
-        vector <int> espacos; 
-        for(int i = 0; i< (int)lista.size(); i++){
-            int tam1 = to_string(lista[i]).length();
-            int tam2 = to_string(lista[posicoes[i]]).length();
-            if(tam2 > tam1){
-                adicionarEspaco[i] = true;
-                espacos.push_back((tam2-tam1));
-            }
-            else
-                espacos.push_back(tam1 - tam2); 
+    vector <bool> adicionarEspaco(lista.size(), false); 
+    vector <int> espacos; 
+    gerarEspacos(espacos, adicionarEspaco); 
+    for(int i = 0; i< (int)lista.size(); i++){
+        if(adicionarEspaco[i])
+            cout << setw(espacos[i] + to_string(lista[i]).length());
+        cout << lista[i] << " "; 
+    }
+    cout << endl; 
+    for(int i = 0; i< (int)lista.size(); i++){
+        if(!adicionarEspaco[i])
+            cout << setw(espacos[i] + to_string(lista[posicoes[i]]).length());
+        cout << lista[posicoes[i]] << " "; 
+    }
+    cout << endl; 
+}
+
+void KendallTau::gerarEspacos(vector <int> &espacos, vector <bool> &adicionarEspaco){
+     for(int i = 0; i< (int)lista.size(); i++){
+        int tam1 = to_string(lista[i]).length();
+        int tam2 = to_string(lista[posicoes[i]]).length();
+        if(tam2 > tam1){
+            adicionarEspaco[i] = true;
+            espacos.push_back((tam2-tam1));
         }
-        for(int i = 0; i< (int)lista.size(); i++){
-            if(adicionarEspaco[i]){
-                cout << setw(espacos[i] + to_string(lista[i]).length());
-            }
-            cout << lista[i] << " "; 
-        }
-        cout << endl; 
-        for(int i = 0; i< (int)lista.size(); i++){
-            if(!adicionarEspaco[i])
-                cout << setw(espacos[i] + to_string(lista[posicoes[i]]).length());
-            cout << lista[posicoes[i]] << " "; 
-        }
-        cout << endl; 
+        else
+            espacos.push_back(tam1 - tam2); 
+    }
 }
 
 void KendallTau::limparDados() {
