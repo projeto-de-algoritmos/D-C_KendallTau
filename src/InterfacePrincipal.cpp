@@ -53,7 +53,7 @@ void InterfacePrincipal::verListas() {
 }
 
 void InterfacePrincipal::calcularDistancia() {
-
+    kendallTau.ContarInversoes();
 }
 
 int InterfacePrincipal::getInt(string mensagem, int min, int max) {
