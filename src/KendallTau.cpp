@@ -67,8 +67,63 @@ void KendallTau::gerarEspacos(vector <int> &espacos, vector <bool> &adicionarEsp
     }
 }
 
-void KendallTau::ContarInversoes(){
+void contar(vector <int> &array){
+     vector <int> esq, dir; 
+    for(int i=0;i < (int)array.size()/2; i++)
+        esq.push_back(array[i]); 
+    for(int i=array.size()/2+1; i< (int)array.size()/2; i++)
+        dir.push_back(array[i]); 
+    
 }
+
+void KendallTau::calcularDistancia(){
+    int inversoes = ContarInversoes(posicoes); 
+    cout << "A distância tau de Kendall é de " << inversoes << endl; 
+}
+
+int KendallTau::ContarInversoes(vector <int> &array){
+    int tamanho = array.size(); 
+    if(tamanho == 1)
+        return 0; 
+    vector <int> A,B;
+    dividir(A,B,array); 
+    
+    int invA = ContarInversoes(A); 
+    int invB = ContarInversoes(B);
+    int inv = mergeAndCount(A,B, array);
+    return (inv+invA+invB); 
+}
+
+void KendallTau::dividir(vector <int> &A, vector <int> &B, vector <int> &array){
+    for(int i = 0; i < (int)array.size()/2; i++){
+        A.push_back(array[i]);
+    }
+    for(int i = array.size()/2; i< (int)array.size(); i++){
+        B.push_back(array[i]);
+    }
+}
+
+int KendallTau::mergeAndCount(vector <int> &array1, vector <int> &array2, vector <int> &array){
+    vector <int> aux; 
+    int ini1 = 0, ini2 = 0, inv = 0, tamanho = array1.size(); 
+    array1.push_back(INT_MAX); 
+    array2.push_back(INT_MAX); 
+    for(int i=0; i< (int)array.size(); i++){
+        if(array1[ini1] <= array2[ini2]){
+            aux.push_back(array1[ini1]); 
+            ini1++;
+        }
+        else{
+            aux.push_back(array2[ini2]);
+            ini2++; 
+            inv+= (tamanho - ini1); 
+        }
+    }
+    
+    array = aux; 
+    return inv; 
+}
+
 
 void KendallTau::limparDados() {
     lista.clear();

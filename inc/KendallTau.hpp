@@ -18,7 +18,10 @@ public:
     bool adicionarPosicao(int elemento);
     void imprimirListas(); 
     void gerarEspacos(vector <int> &espacos, vector <bool> &adicionarEspaco); 
-    void ContarInversoes(); 
+    void calcularDistancia(); 
+    void dividir(vector <int> &A, vector <int> &B, vector <int> &array); 
+    int ContarInversoes(vector <int> &array); 
+    int mergeAndCount(vector <int> &array1, vector <int> &array2, vector <int> &array);
     void limparDados();
 };
 
