@@ -53,7 +53,8 @@ void InterfacePrincipal::verListas() {
 }
 
 void InterfacePrincipal::calcularDistancia() {
-    kendallTau.ContarInversoes();
+    kendallTau.imprimirListas();
+    cout << "A distância tau de Kendall é " << kendallTau.obterDistancia() << endl;
 }
 
 int InterfacePrincipal::getInt(string mensagem, int min, int max) {

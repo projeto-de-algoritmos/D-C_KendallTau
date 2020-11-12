@@ -12,14 +12,19 @@ private:
     vector <int> posicoes;
     vector <int> lista;
     vector <int> lista2; 
+    vector <int> listaOrdenada;
+    vector <int> posicoesOrdenadas;
+    int qtDeInversoes;
 public:
     bool adicionarElemento(int elemento);
     bool temElemento(int elemento, vector<int> listaX);
     bool adicionarPosicao(int elemento);
     void imprimirListas(); 
     void gerarEspacos(vector <int> &espacos, vector <bool> &adicionarEspaco); 
-    void ContarInversoes(); 
     void limparDados();
+    int obterDistancia();
+    void mergesort(int first, int last);
+    void mergeCount(int inicioA, int fimA, int inicioB, int fimB);
 };
 
 #endif

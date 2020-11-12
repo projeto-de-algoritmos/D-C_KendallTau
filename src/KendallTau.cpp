@@ -67,11 +67,57 @@ void KendallTau::gerarEspacos(vector <int> &espacos, vector <bool> &adicionarEsp
     }
 }
 
-void KendallTau::ContarInversoes(){
-}
-
 void KendallTau::limparDados() {
     lista.clear();
     lista2.clear();
     posicoes.clear();
+}
+
+int KendallTau::obterDistancia() {
+    qtDeInversoes = 0;
+    listaOrdenada = lista;
+    posicoesOrdenadas = posicoes;
+    mergesort(0, listaOrdenada.size() - 1);
+    return qtDeInversoes;
+}
+
+void KendallTau::mergesort(int inicio, int fim) {
+    if(fim > inicio) {
+        mergesort(inicio, (fim + inicio) / 2);
+        mergesort((fim + inicio) / 2 + 1, fim);
+        mergeCount(inicio, (fim + inicio) / 2, (fim + inicio) / 2 + 1, fim);
+    }
+}
+
+void KendallTau::mergeCount(int inicioA, int fimA, int inicioB, int fimB) {
+    vector <int> listaOrdenada;
+    vector <int> posicoesOrdenadas;
+    int indiceA = inicioA, indiceB = inicioB;
+    int total = fimB - inicioA + 1;
+    for(int i = 0; i < total; i++) {
+        if(indiceA > fimA) {
+            listaOrdenada.push_back(this->listaOrdenada[indiceB]);
+            posicoesOrdenadas.push_back(this->posicoesOrdenadas[indiceB]);
+            indiceB++;
+        } else if(indiceB > fimB) {
+            listaOrdenada.push_back(this->listaOrdenada[indiceA]);
+            posicoesOrdenadas.push_back(this->posicoesOrdenadas[indiceA]);
+            indiceA++;
+        } else if(this->posicoesOrdenadas[indiceA] < this->posicoesOrdenadas[indiceB]) {
+            listaOrdenada.push_back(this->listaOrdenada[indiceA]);
+            posicoesOrdenadas.push_back(this->posicoesOrdenadas[indiceA]);
+            indiceA++;
+        } else {
+            listaOrdenada.push_back(this->listaOrdenada[indiceB]);
+            posicoesOrdenadas.push_back(this->posicoesOrdenadas[indiceB]);
+            indiceB++;
+            qtDeInversoes += fimA - indiceA + 1;
+        }
+    }
+    int indice = inicioA;
+    for(int i = 0; i < (int)listaOrdenada.size(); i++) {
+        this->listaOrdenada[indice] = listaOrdenada[i];
+        this->posicoesOrdenadas[indice] = posicoesOrdenadas[i];
+        indice++;
+    }
 }
