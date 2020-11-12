@@ -3,14 +3,14 @@
 using namespace std; 
 
 bool KendallTau::adicionarElemento(int elemento) {
-    if(temElemento(elemento))
+    if(temElemento(elemento, lista))
         return false;
     lista.push_back(elemento);
     posicoes.resize(lista.size(), -1);
     return true;
 }
 
-bool KendallTau::temElemento(int elemento) {
+bool KendallTau::temElemento(int elemento, vector <int> lista) {
     for(int i = 0; i < (int)lista.size(); i++) {
         if(lista[i] == elemento)
             return true;
@@ -18,14 +18,14 @@ bool KendallTau::temElemento(int elemento) {
     return false;
 }
 
-bool KendallTau::adicionarPosicao(int elemento, int posicao) {
+bool KendallTau::adicionarPosicao(int elemento) {
     for(int i = 0; i < (int)lista.size(); i++) {
         if(lista[i] == elemento) {
-            if(posicoes[i] == -1) {
-                posicoes[i] = posicao;
-                return true;
-            } else
-                return false;
+            if(temElemento(elemento, lista2))
+                false; 
+            posicoes.push_back(i); 
+            lista2.push_back(elemento);
+            return true;
         }
     }
     return false;

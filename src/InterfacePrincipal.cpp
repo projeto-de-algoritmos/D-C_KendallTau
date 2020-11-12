@@ -37,7 +37,7 @@ void InterfacePrincipal::cadastrarListas() {
     cout << "Lista 2" << endl;
     for(int i = 0; i < tamanho; i++) {
         int elemento = getInt("Elemento " + to_string(i + 1) + ": ", INT_MIN, INT_MAX);
-        if(!kendallTau.adicionarPosicao(elemento, i)) {
+        if(!kendallTau.adicionarPosicao(elemento)) {
             cout << "Esse elemento não faz parte do conjunto ou já foi incluído nessa lista" << endl;
             i--;
         }
