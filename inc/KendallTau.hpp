@@ -25,6 +25,7 @@ public:
     int obterDistancia();
     void mergesort(int first, int last);
     void mergeCount(int inicioA, int fimA, int inicioB, int fimB);
+    int getElemento(int i); 
 };
 
 #endif

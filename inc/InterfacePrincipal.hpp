@@ -14,7 +14,7 @@ public:
     void menuPrincipal();
     void cadastrarListas();
     void verListas();
-    void adicionarElemento();
+    void gerarListas();
     void calcularDistancia();
     void spam(string mensagem); 
     int getInt(string mensagem, int min, int max);

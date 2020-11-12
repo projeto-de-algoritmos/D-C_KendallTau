@@ -2,12 +2,14 @@
 
 #include <limits.h>
 #include <stdlib.h>
+#include <cstdlib> 
+#include <ctime> 
 
 void InterfacePrincipal::menuPrincipal() {
     system("clear||cls");
     while(true) {
         cout << "(1) Cadastrar novas listas" << endl;
-        cout << "(2) Adicionar novo elemento às listas" << endl;
+        cout << "(2) Gerar listas aleatórias" << endl;
         cout << "(3) Ver listas" << endl;
         cout << "(4) Calcular a distância tau de Kendall" << endl;
         cout << "(0) Finalizar" << endl;
@@ -16,7 +18,7 @@ void InterfacePrincipal::menuPrincipal() {
         if(opcao == 1)
             cadastrarListas();
         else if(opcao == 2)
-            adicionarElemento();
+            gerarListas();
         else if(opcao == 3)
             verListas();
         else if(opcao == 4)
@@ -51,8 +53,24 @@ void InterfacePrincipal::cadastrarListas() {
     
 }
 
-void InterfacePrincipal::adicionarElemento() {
-
+void InterfacePrincipal::gerarListas() {
+    kendallTau.limparDados(); 
+    unsigned seed = time(0); 
+    srand(seed); 
+    int tamanho = getInt("Tamanho do conjunto de elementos: ", 1, INT_MAX);
+    system("clear||cls");
+    for(int i=0; i< tamanho; i++){
+        int elemento = 1+rand()%(8*tamanho);
+        if(!kendallTau.adicionarElemento(elemento))
+            i--; 
+    }
+    for(int i=0; i< tamanho; i++){
+        int indice = rand()%tamanho;
+        if(!kendallTau.adicionarPosicao(kendallTau.getElemento(indice)))
+            i--; 
+    }
+    spam("Listas aleatórias geradas com sucesso");
+    kendallTau.imprimirListas(); 
 }
 
 void InterfacePrincipal::verListas() {

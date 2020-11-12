@@ -122,3 +122,7 @@ void KendallTau::mergeCount(int inicioA, int fimA, int inicioB, int fimB) {
         indice++;
     }
 }
+
+int KendallTau::getElemento(int i){
+    return lista[i]; 
+}
