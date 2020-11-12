@@ -2,6 +2,7 @@
 
 #include <limits.h>
 
+
 using namespace std; 
 
 bool KendallTau::adicionarElemento(int elemento) {
@@ -51,7 +52,7 @@ void KendallTau::imprimirListas(){
             cout << setw(espacos[i] + to_string(lista2[i]).length());
         cout << lista2[i] << " "; 
     }
-    cout << endl;
+    cout << endl << endl;
 }
 
 void KendallTau::gerarEspacos(vector <int> &espacos, vector <bool> &adicionarEspaco){

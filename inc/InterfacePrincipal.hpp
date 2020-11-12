@@ -16,6 +16,7 @@ public:
     void verListas();
     void adicionarElemento();
     void calcularDistancia();
+    void spam(string mensagem); 
     int getInt(string mensagem, int min, int max);
 };
 
