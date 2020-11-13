@@ -1,9 +1,7 @@
 #include "KendallTau.hpp"
 
-#include <limits.h>
-
-
-using namespace std; 
+#include <iostream>
+#include <iomanip>
 
 bool KendallTau::adicionarElemento(int elemento) {
     if(temElemento(elemento, lista))
@@ -35,22 +33,23 @@ bool KendallTau::adicionarPosicao(int elemento) {
 
 void KendallTau::imprimirListas(){
     if(lista.empty()){
-        cout << "lista vazia" << endl; 
+        cout << "Lista vazia" << endl << endl; 
         return;
     }
     vector <bool> adicionarEspaco(lista.size(), false); 
     vector <int> espacos; 
     gerarEspacos(espacos, adicionarEspaco); 
+    cout << "Lista 1: ";
     for(int i = 0; i< (int)lista.size(); i++){
         if(adicionarEspaco[i])
             cout << setw(espacos[i] + to_string(lista[i]).length());
-        cout << lista[i] << " "; 
+        cout << lista[i] << "   "; 
     }
-    cout << endl; 
+    cout << endl << endl << "Lista 2: "; 
     for(int i = 0; i< (int)lista.size(); i++){
         if(!adicionarEspaco[i])
             cout << setw(espacos[i] + to_string(lista2[i]).length());
-        cout << lista2[i] << " "; 
+        cout << lista2[i] << "   "; 
     }
     cout << endl << endl;
 }

@@ -2,8 +2,6 @@
 
 #include <limits.h>
 #include <stdlib.h>
-#include <cstdlib> 
-#include <ctime> 
 
 void InterfacePrincipal::menuPrincipal() {
     system("clear||cls");
@@ -30,7 +28,7 @@ void InterfacePrincipal::menuPrincipal() {
 
 void InterfacePrincipal::cadastrarListas() {
     kendallTau.limparDados();
-    int tamanho = getInt("Tamanho do conjunto de elementos: ", 1, INT_MAX);
+    int tamanho = getInt("Tamanho do conjunto de elementos: ", 1, 10000);
     system("clear||cls");
     cout << "Lista 1" << endl;
     for(int i = 0; i < tamanho; i++) {
@@ -57,17 +55,23 @@ void InterfacePrincipal::gerarListas() {
     kendallTau.limparDados(); 
     unsigned seed = time(0); 
     srand(seed); 
-    int tamanho = getInt("Tamanho do conjunto de elementos: ", 1, INT_MAX);
+    int tamanho = getInt("Tamanho do conjunto de elementos: ", 1, 10000);
     system("clear||cls");
+    cout << "Gerando números..." << endl;
     for(int i=0; i< tamanho; i++){
         int elemento = 1+rand()%(8*tamanho);
         if(!kendallTau.adicionarElemento(elemento))
             i--; 
     }
+    vector <bool> incluidos(tamanho, false);
     for(int i=0; i< tamanho; i++){
         int indice = rand()%tamanho;
-        if(!kendallTau.adicionarPosicao(kendallTau.getElemento(indice)))
-            i--; 
+        while(indice < tamanho - 1 && incluidos[indice])
+            indice++;
+        while(incluidos[indice])
+            indice--;
+        incluidos[indice] = true;
+        kendallTau.adicionarPosicao(kendallTau.getElemento(indice));
     }
     spam("Listas aleatórias geradas com sucesso");
     kendallTau.imprimirListas(); 

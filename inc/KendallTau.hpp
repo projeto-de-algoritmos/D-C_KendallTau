@@ -1,9 +1,7 @@
 #ifndef KENDALLTAU_HPP
 #define KENDALLTAU_HPP
 
-#include <iostream>
 #include <vector>
-#include <iomanip> 
 
 using namespace std;
 
